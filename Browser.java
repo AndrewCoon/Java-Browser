@@ -18,7 +18,7 @@ public class Browser {
     }
 
     private void init() {
-        frame = new Frame(size, size, "Snake Game");
+        frame = new Frame(size, size, "Java Browser");
     }
 
 
