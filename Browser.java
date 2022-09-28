@@ -29,6 +29,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     }
     public Browser() {
         this.size = 450;
+
         this.title = "default";
         init();
     }
@@ -44,10 +45,31 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
         init();
     }
 
+    public String getValue(String start, String end, String full){
+        return full.substring(full.indexOf(start) + start.length(), full.indexOf(end));
+    }
+    public void Parse(String url){
+        getHTML file = new getHTML(url);
+        String data = file.total.toLowerCase();
+        // int titleStart = data.indexOf("<title>");
+        // titleStart += 7;
+        // int titleEnd = data.indexOf("</title>");
+        title = getValue("<title>","</title>", data);
+    }
     private void init() {
+        Parse("http://info.cern.ch/hypertext/WWW/TheProject.html");
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
+<<<<<<< HEAD
         repaint();
+=======
+        frame = new Frame(size, size, title);
+        //frame = new Frame(size, size, "Java Browser");
+        
+        this.setBounds(0, 0, size, size);
+        frame.add(this);
+        
+>>>>>>> 0e27cb1cc1ffa68d5b85e6b320c55a53db629c7b
         
         frame = new Frame(size, size, title);
 
