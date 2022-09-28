@@ -13,13 +13,20 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     private int ED_HEIGHT = 100;  // KG
     String title;
 
+    public static void main(String[] args) {
+        new Browser();
+    }
+
+
     public Browser() {
         this.size = 450;
+
+        this.title = "default";
         init();
     }
     
-    public Browser(String title) {
-        this.size = 450;
+    public Browser(String title, int size) {
+        this.size = size;
         this.title = title;
         init();
     }
@@ -33,15 +40,15 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
         return full.substring(full.indexOf(start) + start.length(), full.indexOf(end));
     }
     public void Parse(String url){
-        getHTML file = new getHTML("http://google.com");
-        String data = file.total;
+        getHTML file = new getHTML(url);
+        String data = file.total.toLowerCase();
         // int titleStart = data.indexOf("<title>");
         // titleStart += 7;
         // int titleEnd = data.indexOf("</title>");
         title = getValue("<title>","</title>", data);
     }
     private void init() {
-        Parse("http://info.cern.ch/");
+        Parse("http://info.cern.ch/hypertext/WWW/TheProject.html");
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
         frame = new Frame(size, size, title);
@@ -50,6 +57,11 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
         this.setBounds(0, 0, size, size);
         frame.add(this);
         
+        
+        frame = new Frame(size, size, title);
+
+        this.setBounds(0, 0, size, size);
+        frame.add(this);
 
         textField = new JTextField(20);
         textField.addActionListener(this);
