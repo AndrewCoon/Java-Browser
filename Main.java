@@ -5,7 +5,7 @@ public class Main {
         int titleStart = data.indexOf("<title>");
         titleStart += 7;
         int titleEnd = data.indexOf("</title>");
-        new Browser(data.substring(titleStart, titleEnd));
+        new Browser(data.substring(titleStart, titleEnd), 600);
 
     }
 }

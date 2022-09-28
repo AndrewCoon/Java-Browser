@@ -13,12 +13,19 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     private int ED_HEIGHT = 100;  // KG
     String title;
 
+    public static void main(String[] args) {
+        new Browser();
+    }
+
+
     public Browser() {
         this.size = 450;
+        this.title = "default";
+        init();
     }
     
-    public Browser(String title) {
-        this.size = 450;
+    public Browser(String title, int size) {
+        this.size = size;
         this.title = title;
         init();
     }
@@ -32,11 +39,10 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
         
-        frame = new Frame(size, size, "Java Browser");
-        
+        frame = new Frame(size, size, title);
+
         this.setBounds(0, 0, size, size);
         frame.add(this);
-        frame = new Frame(size, size, title);
 
         textField = new JTextField(20);
         textField.addActionListener(this);
