@@ -56,12 +56,21 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     // int titleStart = data.indexOf("<title>");
     // titleStart += 7;
     // int titleEnd = data.indexOf("</title>");
-    title = getValue("<title>", "</title>", data);
-    h1tag = getValue("<h1>", "</h1>", data);
+    try {
+      title = getValue("<title>", "</title>", data);
+    } catch (Exception e) {
+      title = url;
+    }
+    try {
+      h1tag = getValue("<h1>", "</h1>", data);
+    } catch (Exception e) {
+      h1tag = "";
+    }
+
   }
 
   private void init() {
-    Parse("http://info.cern.ch");
+    Parse("http://info.cern.ch/");
     this.ED_WIDTH = size * 2;
     this.ED_HEIGHT = size;
 
