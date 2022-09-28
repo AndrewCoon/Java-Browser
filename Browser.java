@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
 
 public class Browser implements ActionListener{
     int size = 450;
@@ -43,6 +42,11 @@ public class Browser implements ActionListener{
         c.weighty = 1.0;
         frame.add(scrollPane, c);
     }
+    public void actionPerformed(ActionEvent evt) {
+        //Object obj = packageChoice.getSelectedItem();
+        //JOptionPane.showMessageDialog(this, "You selected: " + obj);
+      }
+      
 
 
 }
