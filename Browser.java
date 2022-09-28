@@ -9,9 +9,10 @@ public class Browser implements ActionListener, KeyListener{
     protected JTextField textField;
     protected JTextArea textArea;
     private final static String newline = "\n";
-
-    public Browser() {
+    String title;
+    public Browser(String title) {
         this.size = 450;
+        this.title = title;
         init();
     }
 
@@ -21,7 +22,7 @@ public class Browser implements ActionListener, KeyListener{
     }
 
     private void init() {
-        frame = new Frame(size, size, "Java Browser");
+        frame = new Frame(size, size, title);
 
         textField = new JTextField(20);
         textField.addActionListener(this);
