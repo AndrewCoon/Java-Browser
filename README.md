@@ -1,4 +1,4 @@
-﻿# Java Browser
+﻿# Internet Explorer but better, fuck it (IEBBFI)
 
 Browser in java (real)
 
