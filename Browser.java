@@ -15,6 +15,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
 
     public Browser() {
         this.size = 450;
+        init();
     }
     
     public Browser(String title) {
@@ -28,15 +29,27 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
         init();
     }
 
+    public String getValue(String start, String end, String full){
+        return full.substring(full.indexOf(start) + start.length(), full.indexOf(end));
+    }
+    public void Parse(String url){
+        getHTML file = new getHTML("http://google.com");
+        String data = file.total;
+        // int titleStart = data.indexOf("<title>");
+        // titleStart += 7;
+        // int titleEnd = data.indexOf("</title>");
+        title = getValue("<title>","</title>", data);
+    }
     private void init() {
+        Parse("http://info.cern.ch/");
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
-        
-        frame = new Frame(size, size, "Java Browser");
+        frame = new Frame(size, size, title);
+        //frame = new Frame(size, size, "Java Browser");
         
         this.setBounds(0, 0, size, size);
         frame.add(this);
-        frame = new Frame(size, size, title);
+        
 
         textField = new JTextField(20);
         textField.addActionListener(this);
