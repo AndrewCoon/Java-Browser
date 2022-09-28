@@ -1,9 +1,8 @@
-import javax.swing.*;
-import java.awt.Color;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
-public class Browser implements ActionListener{
+public class Browser implements ActionListener, KeyListener{
     int size = 450;
     Frame frame;
     Panel panel;
@@ -43,10 +42,24 @@ public class Browser implements ActionListener{
         frame.add(scrollPane, c);
     }
     public void actionPerformed(ActionEvent evt) {
-        //Object obj = packageChoice.getSelectedItem();
-        //JOptionPane.showMessageDialog(this, "You selected: " + obj);
-      }
-      
+        
+    }
+
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    public void keyTyped(KeyEvent e) {
+        
+    }
+    
+    public void keyPressed(KeyEvent e) {
+        int keycode = e.getKeyCode();
+        if (keycode == KeyEvent.VK_ENTER) {
+            System.out.println("Enter Pressed");            
+        }
+        panel.repaint();
+    }
 
 
 }
