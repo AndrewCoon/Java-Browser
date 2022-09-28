@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class Browser extends JPanel implements ActionListener, KeyListener{
     int size = 450;
@@ -18,6 +20,13 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     }
 
 
+    public void Paint(Graphics g) {
+        Graphics2D g2 = (Graphics2D)g; 
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+        RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.drawString("This is gona be awesome",70,20); 
+    }
     public Browser() {
         this.size = 450;
         this.title = "default";
@@ -38,6 +47,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     private void init() {
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
+        repaint();
         
         frame = new Frame(size, size, title);
 
