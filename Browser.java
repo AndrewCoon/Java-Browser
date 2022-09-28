@@ -8,16 +8,13 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     protected JTextField textField;
     protected JTextArea textArea;
     private final static String newline = "\n";
-<<<<<<< HEAD
     private static final int CURSOR_WIDTH = 5;  // KG
     private int ED_WIDTH = 1000;  // KG
     private int ED_HEIGHT = 100;  // KG
 
     public Browser() {
-=======
     String title;
     public Browser(String title) {
->>>>>>> a2b3081c2898e866a41cf6af34ee9d177b7c6507
         this.size = 450;
         this.title = title;
         init();
@@ -29,18 +26,16 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
     }
 
     private void init() {
-<<<<<<< HEAD
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
         
-        frame = new Frame(size, size, "Java Browser");
+        //frame = new Frame(size, size, "Java Browser");
         
         this.setBounds(0, 0, size, size);
         frame.add(this);
-=======
+
         frame = new Frame(size, size, title);
 
->>>>>>> a2b3081c2898e866a41cf6af34ee9d177b7c6507
         textField = new JTextField(20);
         textField.addActionListener(this);
 
