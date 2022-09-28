@@ -60,16 +60,15 @@ public class Browser extends JPanel implements ActionListener, KeyListener{
         Parse("http://info.cern.ch/hypertext/WWW/TheProject.html");
         this.ED_WIDTH = size*2;
         this.ED_HEIGHT = size;
-<<<<<<< HEAD
+
         repaint();
-=======
+
         frame = new Frame(size, size, title);
         //frame = new Frame(size, size, "Java Browser");
         
         this.setBounds(0, 0, size, size);
         frame.add(this);
         
->>>>>>> 0e27cb1cc1ffa68d5b85e6b320c55a53db629c7b
         
         frame = new Frame(size, size, title);
 
