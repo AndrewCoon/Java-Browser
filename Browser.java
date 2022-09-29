@@ -58,7 +58,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     // titleStart += 7;
     // int titleEnd = data.indexOf("</title>");
     try {
-      title = getValue("<title>", "</title>", data);
+      title = "Internet explorer but better v 0.1- "+getValue("<title>", "</title>", data);
     } catch (Exception e) {
       title = url;
     }
