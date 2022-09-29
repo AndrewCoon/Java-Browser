@@ -1,3 +1,6 @@
+/*
+ * bruh
+ */
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -12,7 +15,7 @@ final class TestHTMLRendering {
     private static final int height = 1000;
     private static final int width = 1000;
     private static final String TITLE_STRING = "HTML Rendering";
-    private static final String URL = "http://info.cern.ch/";
+    private static final String URL = "http://jsgames.rf.gd/";
     private static final String VERSION_STRING = "1.0";
 
     public static void main(String args[]) {
