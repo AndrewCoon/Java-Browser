@@ -67,7 +67,6 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       h1tag = getValue("<h1", "/h1>", data);
       h1tag = getValue(">", "<", h1tag);
 
-      h1tag = getValue("<h1>", "</h1>", data) + "\n";
     } catch (Exception e) {
       h1tag = "";
     }
