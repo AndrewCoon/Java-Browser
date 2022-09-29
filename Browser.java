@@ -13,12 +13,9 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   private static final int CURSOR_WIDTH = 5; // KG
   private int ED_WIDTH = 300; // KG
   private int ED_HEIGHT = 500; // KG
-<<<<<<< HEAD
-  String title, h1tag, span1;
-=======
-  String title, h1tag , ptag;
->>>>>>> b23075c9f9938d1f58b11355840bc57184719b9e
+  String title, h1tag, span1, ptag;
   protected JLabel actionLabel;
+  protected JLabel spanLabel;
   protected JLabel paragraph;
 
   public static void main(String[] args) {
@@ -67,18 +64,17 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     }
     
     try {
-<<<<<<< HEAD
       h1tag = getValue("<h1", "/h1>", data);
       h1tag = getValue(">", "<", h1tag);
 
-=======
       h1tag = getValue("<h1>", "</h1>", data) + "\n";
->>>>>>> b23075c9f9938d1f58b11355840bc57184719b9e
     } catch (Exception e) {
       h1tag = "";
     }
+
     try {
-        ptag = getValue("<p>", "</p>", data) + "\n";
+        ptag = getValue("<span", "/span>", data);
+        ptag = getValue(">", "<", ptag);
       } catch (Exception e) {
         ptag = "";
       }
@@ -93,7 +89,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   }
 
   private void init() {
-    Parse("https://classroom.google.com/");
+    Parse("https://www.york.ac.uk/teaching/cws/wws/webpage1.html");
     this.ED_WIDTH = size * 2;
     this.ED_HEIGHT = size;
 
@@ -114,24 +110,17 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     textField.addActionListener(this);
 
     actionLabel = new JLabel(h1tag);
-<<<<<<< HEAD
-    JLabel spanLabel = new JLabel(span1);
+    spanLabel = new JLabel(span1);
     // actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-=======
     paragraph = new JLabel(ptag);
     actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     paragraph.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
->>>>>>> b23075c9f9938d1f58b11355840bc57184719b9e
     JPanel p = new JPanel();
 
     // add label to panel
     p.add(actionLabel);
-<<<<<<< HEAD
     p.add(spanLabel);
-=======
     p.add(paragraph);
-
->>>>>>> b23075c9f9938d1f58b11355840bc57184719b9e
     // add panel to frame
     this.add(p);
 
