@@ -13,7 +13,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   private static final int CURSOR_WIDTH = 5; // KG
   private int ED_WIDTH = 300; // KG
   private int ED_HEIGHT = 500; // KG
-  String title, h1tag;
+  String title, h1tag, span1;
   protected JLabel actionLabel;
 
   public static void main(String[] args) {
@@ -61,15 +61,24 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       title = url;
     }
     try {
-      h1tag = getValue("<h1>", "</h1>", data);
+      h1tag = getValue("<h1", "/h1>", data);
+      h1tag = getValue(">", "<", h1tag);
+
     } catch (Exception e) {
       h1tag = "";
     }
 
+    try {
+        span1 = getValue("<span", "/span>", data);
+        span1 = getValue(">", "<", span1);
+      } catch (Exception e) {
+        span1 = "";
+      }
+
   }
 
   private void init() {
-    Parse("http://info.cern.ch/");
+    Parse("https://classroom.google.com/");
     this.ED_WIDTH = size * 2;
     this.ED_HEIGHT = size;
 
@@ -90,12 +99,13 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     textField.addActionListener(this);
 
     actionLabel = new JLabel(h1tag);
+    JLabel spanLabel = new JLabel(span1);
     // actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     JPanel p = new JPanel();
 
     // add label to panel
     p.add(actionLabel);
-
+    p.add(spanLabel);
     // add panel to frame
     this.add(p);
 
