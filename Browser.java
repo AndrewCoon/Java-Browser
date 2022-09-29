@@ -88,7 +88,14 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   }
 
   private void init() {
-    Parse("https://www.york.ac.uk/teaching/cws/wws/webpage1.html");
+    Object[] possibilities = null;
+String s = (String)JOptionPane.showInputDialog(
+                    frame,
+                    "Load website:\n"
+                    + "\"didnt ask\"");
+
+
+    Parse(s);
     this.ED_WIDTH = size * 2;
     this.ED_HEIGHT = size;
 
@@ -99,6 +106,8 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     this.setBounds(0, 0, size, size);
     frame.add(this);
 
+
+    
     this.setBounds(0, 0, size, size);
     frame.add(this);
 
