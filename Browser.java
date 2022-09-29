@@ -30,7 +30,6 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
 
   public Browser() {
     this.size = 450;
-
     this.title = "default";
     init();
   }
