@@ -106,6 +106,8 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     textField = new JTextField(20);
     textField.addActionListener(this);
 
+    ptag = String.format("<html><div style=\"width:%dpx;\">%s</div></html>", 200, ptag);
+
     actionLabel = new JLabel(h1tag);
     spanLabel = new JLabel(span1);
     // actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
