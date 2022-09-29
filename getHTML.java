@@ -29,7 +29,8 @@ public class getHTML {
             System.out.println("Done");
 
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            total = "<title>URL does not exist!</title>";
+            //e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
