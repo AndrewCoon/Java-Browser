@@ -53,7 +53,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
 
   public void Parse(String url) {
     getHTML file = new getHTML(url);
-    String data = file.total;// .toLowerCase();
+    String data = file.total.toLowerCase();
     // int titleStart = data.indexOf("<title>");
     // titleStart += 7;
     // int titleEnd = data.indexOf("</title>");
@@ -73,7 +73,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     }
 
     try {
-        ptag = getValue("<span", "/span>", data);
+        ptag = getValue("<p", "/p>", data);
         ptag = getValue(">", "<", ptag);
       } catch (Exception e) {
         ptag = "";
@@ -96,12 +96,9 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     repaint();
 
     frame = new Frame(size, size, title);
-    // frame = new Frame(size, size, "Java Browser");
 
     this.setBounds(0, 0, size, size);
     frame.add(this);
-
-    // frame = new Frame(size, size, title);
 
     this.setBounds(0, 0, size, size);
     frame.add(this);
