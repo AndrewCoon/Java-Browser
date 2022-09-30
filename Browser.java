@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -17,6 +19,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   protected JLabel actionLabel;
   protected JLabel spanLabel;
   protected JLabel paragraph;
+  List<JLabel> h1s = new ArrayList<JLabel>();
 
   public static void main(String[] args) {
     new Browser();
@@ -53,47 +56,56 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
 
   public void Parse(String url) {
     getHTML file = new getHTML(url);
-    String data = file.total.toLowerCase();
+    String data;
+    try {
+
+      data = file.total.toLowerCase();
+    } catch (Exception e) {
+      data = "<h1> IEBBFI could not load website </h1>";
+
+    }
     // int titleStart = data.indexOf("<title>");
     // titleStart += 7;
     // int titleEnd = data.indexOf("</title>");
     try {
-      title = "Internet explorer but better v 0.1- "+getValue("<title>", "</title>", data);
+      title = "Internet explorer but better v 0.1- " + getValue("<title>", "</title>", data);
     } catch (Exception e) {
       title = url;
     }
-    
-    try {
-      h1tag = getValue("<h1", "/h1>", data);
-      h1tag = getValue(">", "<", h1tag);
+    for (int i = 0; i < 5; i++) {
+      try {
+        h1tag = getValue("<h1", "/h1>", data);
+        h1tag = getValue(">", "<", h1tag);
 
-    } catch (Exception e) {
-      h1tag = "";
+      } catch (Exception e) {
+        h1tag = "";
+      }
+      data = data.replace("<h1>" + h1tag + "</h1>", " ");
+      actionLabel = new JLabel(h1tag);
+      actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+      h1s.add(actionLabel);
     }
 
     try {
-        ptag = getValue("<p", "/p>", data);
-        ptag = getValue(">", "<", ptag);
-      } catch (Exception e) {
-        ptag = "";
-      }
+      ptag = getValue("<p", "/p>", data);
+      ptag = getValue(">", "<", ptag);
+    } catch (Exception e) {
+      ptag = "";
+    }
 
     try {
-        span1 = getValue("<span", "/span>", data);
-        span1 = getValue(">", "<", span1);
-      } catch (Exception e) {
-        span1 = "";
-      }
+      span1 = getValue("<span", "/span>", data);
+      span1 = getValue(">", "<", span1);
+    } catch (Exception e) {
+      span1 = "";
+    }
 
   }
 
   private void init() {
     Object[] possibilities = null;
-String s = (String)JOptionPane.showInputDialog(
-                    frame,
-                    "Load website:\n"
-                    + "\"didnt ask\"");
-
+    String s = (String) JOptionPane.showInputDialog(
+        frame, "Load website:\n");
 
     Parse(s);
     this.ED_WIDTH = size * 2;
@@ -106,8 +118,6 @@ String s = (String)JOptionPane.showInputDialog(
     this.setBounds(0, 0, size, size);
     frame.add(this);
 
-
-    
     this.setBounds(0, 0, size, size);
     frame.add(this);
 
@@ -116,23 +126,28 @@ String s = (String)JOptionPane.showInputDialog(
 
     ptag = String.format("<html><div style=\"width:%dpx;\">%s</div></html>", 200, ptag);
 
-    actionLabel = new JLabel(h1tag);
+    // actionLabel = new JLabel(h1tag);
     spanLabel = new JLabel(span1);
     // actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     paragraph = new JLabel(ptag);
-    actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+    // actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     paragraph.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
     JPanel p = new JPanel();
 
     // add label to panel
-    p.add(actionLabel);
+    for (int i = 0; i < h1s.size(); i++) {
+      System.out.println("h1 tag number: " + i);
+      p.add(h1s.get(i));
+    }
+    // p.add(actionLabel);
     p.add(spanLabel);
     p.add(paragraph);
-    // add panel to frame
-    this.add(p);
 
     textArea = new JTextArea(5, 20);
     textArea.setEditable(true);
+    p.add(textArea);
+
+    this.add(p);
 
     JScrollPane scrollPane = new JScrollPane(textArea);
 
