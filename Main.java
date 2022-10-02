@@ -1,8 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        
-        new Browser();
-        
-
+        Browser b = new Browser(true);
+        System.out.println(b);
     }
 }
