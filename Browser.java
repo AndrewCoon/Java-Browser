@@ -20,6 +20,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   protected JLabel spanLabel;
   protected JLabel paragraph;
   List<JLabel> h1s = new ArrayList<JLabel>();
+  List<JLabel> ps = new ArrayList<JLabel>();
 
   public static void main(String[] args) {
     new Browser();
@@ -85,14 +86,19 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
       h1s.add(actionLabel);
     }
+    for (int i = 0; i < 5; i++) {
 
     try {
       ptag = getValue("<p", "/p>", data);
       ptag = getValue(">", "<", ptag);
+      data = data.replace("<p>" + ptag + "</p>", " ");
+      actionLabel = new JLabel(ptag);
+      actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+      ps.add(actionLabel);
     } catch (Exception e) {
       ptag = "";
     }
-
+    }
     try {
       span1 = getValue("<span", "/span>", data);
       span1 = getValue(">", "<", span1);
@@ -137,7 +143,13 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     // add label to panel
     for (int i = 0; i < h1s.size(); i++) {
       System.out.println("h1 tag number: " + i);
-      p.add(h1s.get(i));
+      //p//
+      this.add(h1s.get(i));
+    }
+    for (int i = 0; i < ps.size(); i++) {
+      System.out.println("p tag number: " + i);
+      //p//
+      this.add(ps.get(i));
     }
     // p.add(actionLabel);
     p.add(spanLabel);
