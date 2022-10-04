@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import java.net.URL;
 
 public class Browser extends JPanel implements ActionListener, KeyListener {
   int size = 450;
@@ -21,6 +26,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
   protected JLabel paragraph;
   List<JLabel> h1s = new ArrayList<JLabel>();
   List<JLabel> ps = new ArrayList<JLabel>();
+  BufferedImage image;
 
   public static void main(String[] args) {
     new Browser();
@@ -87,17 +93,16 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       h1s.add(actionLabel);
     }
     for (int i = 0; i < 5; i++) {
-
-    try {
-      ptag = getValue("<p", "/p>", data);
-      ptag = getValue(">", "<", ptag);
-      data = data.replace("<p>" + ptag + "</p>", " ");
-      actionLabel = new JLabel(ptag);
-      actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-      ps.add(actionLabel);
-    } catch (Exception e) {
-      ptag = "";
-    }
+      try {
+        ptag = getValue("<p", "/p>", data);
+        ptag = getValue(">", "<", ptag);
+        data = data.replace("<p>" + ptag + "</p>", " ");
+        actionLabel = new JLabel(ptag);
+        actionLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+        ps.add(actionLabel);
+      } catch (Exception e) {
+        ptag = "";
+      }
     }
     try {
       span1 = getValue("<span", "/span>", data);
@@ -105,7 +110,21 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     } catch (Exception e) {
       span1 = "";
     }
-
+    String imageUrl = "";
+    try {
+      imageUrl = getValue("<img src=", "></img>", data); 
+      imageUrl = imageUrl.replaceAll("\"", "");
+      imageUrl = imageUrl.replace("<", " ");
+      imageUrl = imageUrl.replace(">", " ");
+     // imageUrl = imageUrl.substring(0,imageUrl.indexOf("?"));
+      System.out.println("url: " + imageUrl);
+      URL imageurl = new URL(imageUrl);
+      image = ImageIO.read(imageurl);
+    } catch (Exception e) {
+      System.out.println("GOTEM: ");
+      e.printStackTrace();
+      System.out.println("url: " + imageUrl);
+    }
   }
 
   private void init() {
@@ -143,18 +162,19 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     // add label to panel
     for (int i = 0; i < h1s.size(); i++) {
       System.out.println("h1 tag number: " + i);
-      //p//
+      // p//
       this.add(h1s.get(i));
     }
     for (int i = 0; i < ps.size(); i++) {
       System.out.println("p tag number: " + i);
-      //p//
+      // p//
       this.add(ps.get(i));
     }
+    p.add(new JLabel(new ImageIcon(image)));
+
     // p.add(actionLabel);
     p.add(spanLabel);
     p.add(paragraph);
-
     textArea = new JTextArea(5, 20);
     textArea.setEditable(true);
     p.add(textArea);
