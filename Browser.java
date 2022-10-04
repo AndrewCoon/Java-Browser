@@ -112,14 +112,32 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     }
     String imageUrl = "";
     try {
-      imageUrl = getValue("<img src=", "></img>", data); 
-      imageUrl = imageUrl.replaceAll("\"", "");
-      imageUrl = imageUrl.replace("<", " ");
-      imageUrl = imageUrl.replace(">", " ");
-     // imageUrl = imageUrl.substring(0,imageUrl.indexOf("?"));
-      System.out.println("url: " + imageUrl);
-      URL imageurl = new URL(imageUrl);
-      image = ImageIO.read(imageurl);
+      if(occurs(data,"<img")>0){
+        //srcset
+        if(occurs(data,"src=")>0){
+        imageUrl = getValue("src=", "/img>", data);
+        }else{
+          imageUrl=getValue("srcset=", "/img>", data);
+        }
+       
+        imageUrl = imageUrl.replaceAll("\"", "");
+        imageUrl = imageUrl.replace("<", " ");
+        imageUrl = imageUrl.replace(">", " ");
+        if(occurs(data,"/")==0){
+          imageUrl = url + imageUrl;
+        }
+        try{
+          imageUrl = imageUrl.substring(0,imageUrl.indexOf("?"));
+        }catch(Exception e){
+
+        }
+       // imageUrl = imageUrl.substring(0,imageUrl.indexOf("?"));
+        System.out.println("url: " + imageUrl);
+        URL imageurl = new URL(imageUrl);
+        image = ImageIO.read(imageurl);
+      }
+      //imageUrl = getValue("<img src=", "></img>", data); 
+      
     } catch (Exception e) {
       System.out.println("GOTEM: ");
       e.printStackTrace();
@@ -172,7 +190,7 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     }
     try{
     p.add(new JLabel(new ImageIcon(image)));}catch(Exception e){
-      
+
     }
     // p.add(actionLabel);
     p.add(spanLabel);
@@ -228,8 +246,8 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     int last = word.length();
     int count = 0;
     for (int i = 0; i < str.length()-word.length(); i++) {
-        System.out.println(str.substring(first, last).toLowerCase());  
-        System.out.println(word.toLowerCase());
+       //System.out.println(str.substring(first, last).toLowerCase());  
+        //System.out.println(word.toLowerCase());
         if(str.substring(first, last).toLowerCase().equals(word.toLowerCase()))
           count++;
         first++;
