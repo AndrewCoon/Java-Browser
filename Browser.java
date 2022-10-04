@@ -222,5 +222,20 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     }
     this.repaint();
   }
+  
+  private int occurs(String str, String word) {
+    int first = 0;
+    int last = word.length();
+    int count = 0;
+    for (int i = 0; i < str.length()-word.length(); i++) {
+        System.out.println(str.substring(first, last).toLowerCase());  
+        System.out.println(word.toLowerCase());
+        if(str.substring(first, last).toLowerCase().equals(word.toLowerCase()))
+          count++;
+        first++;
+        last++;
+    }
 
+    return count;
+}
 }
