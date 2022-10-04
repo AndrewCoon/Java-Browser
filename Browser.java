@@ -170,8 +170,10 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       // p//
       this.add(ps.get(i));
     }
-    p.add(new JLabel(new ImageIcon(image)));
-
+    try{
+    p.add(new JLabel(new ImageIcon(image)));}catch(Exception e){
+      
+    }
     // p.add(actionLabel);
     p.add(spanLabel);
     p.add(paragraph);
