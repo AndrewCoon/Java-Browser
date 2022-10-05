@@ -57,9 +57,11 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
     init();
   }
 
-  public String getValue(String start, String end, String full) {
-    return full.substring(full.indexOf(start) + start.length(), full.indexOf(end));
+ public String getValue(String start, String end, String full) {
+    String data = full.substring(full.indexOf(start));
+    return full.substring(start.length(), data.indexOf(end));
   }
+
 
   public void Parse(String url) {
     getHTML file = new getHTML(url);
