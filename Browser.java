@@ -121,7 +121,12 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
         }else{
           imageUrl=getValue("srcset=", ">", data);
         }
-       
+        try{
+        imageUrl = imageUrl.substring(0,imageUrl.indexOf(".jpg")-4);
+        }catch(Exception e){}
+        try{
+          imageUrl = imageUrl.substring(0,imageUrl.indexOf(".png")-4);
+          }catch(Exception e){}
         imageUrl = imageUrl.replaceAll("\"", "");
         imageUrl = imageUrl.replace("<", " ");
         imageUrl = imageUrl.replace(">", " ");
