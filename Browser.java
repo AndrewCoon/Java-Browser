@@ -117,11 +117,9 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       if(occurs(data,"<img")>0){
         //srcset
         if(occurs(data,"src=")>0){
-        //imageUrl = getValue("src=", ">", data);
-        String imagedataja = data.substring(data.indexOf("src="));
-        imageUrl = imagedataja.substring(imagedataja.indexOf("src=")+4,imagedataja.indexOf(">"));
+        imageUrl = getValue("src=", "/img>", data);
         }else{
-          imageUrl=getValue("srcset=", ">", data);
+          imageUrl=getValue("srcset=", "/img>", data);
         }
         try{
         imageUrl = imageUrl.substring(0,imageUrl.indexOf(".jpg")-4);
@@ -151,7 +149,6 @@ public class Browser extends JPanel implements ActionListener, KeyListener {
       System.out.println("GOTEM: ");
       e.printStackTrace();
       System.out.println("url: " + imageUrl);
-      imageUrl = url + imageUrl;
     }
   }
 
